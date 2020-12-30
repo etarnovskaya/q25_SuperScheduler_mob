@@ -1,3 +1,5 @@
+package com.inetex.scheduler.manager;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -10,8 +12,9 @@ public class ApplicationManager {
     AppiumDriver driver;
     DesiredCapabilities caps;
     UserHelper user;
+    EventsHelper events;
 
-    protected void init() throws MalformedURLException {
+    public void init() throws MalformedURLException {
         caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
         caps.setCapability("platformVersion", "8.0");
@@ -28,13 +31,18 @@ public class ApplicationManager {
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         user = new UserHelper(driver);
+        events = new EventsHelper(driver);
     }
 
     public UserHelper user() {
         return user;
     }
 
-    protected void stop() {
+    public EventsHelper event() {
+        return events;
+    }
+
+    public void stop() {
         driver.quit();
     }
 }

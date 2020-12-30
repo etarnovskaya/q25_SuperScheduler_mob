@@ -1,3 +1,6 @@
+package com.inetex.scheduler.tests;
+
+import com.inetex.scheduler.manager.ApplicationManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -13,7 +16,7 @@ public class TestBase {
 
     }
 
-    @AfterClass(enabled = false)
+    @AfterClass(enabled = true)
     public  void tearDown(){
         app.stop();
     }
